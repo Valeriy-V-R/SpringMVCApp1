@@ -18,11 +18,21 @@ public class FistController {
 
       public String helloPage(@RequestParam(value = "a", required = false) Integer a,
                               @RequestParam (value = "b", required = false) Integer b,
-                              @RequestParam (value = "action", required = false) Float action,
+                              @RequestParam (value = "action", required = false) String action,
                               Model model) {
 
-        //System.out.println("Hello, " + name + " " + surname);
-        model.addAttribute("result",   a + " " + b);
+       if (action.equals("multiplication")){
+           model.addAttribute("result",   a * b);
+       }
+       else if(action.equals("addition")){
+           model.addAttribute("result",   a + b);
+       }
+       else if(action.equals("subtraction")) {
+           model.addAttribute("result", a - b);
+       }
+       else if(action.equals("division")) {
+           model.addAttribute("result", a / b);
+       }
 
         return ("first/calculator");
     }

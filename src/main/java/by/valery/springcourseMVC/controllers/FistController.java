@@ -31,7 +31,7 @@ public class FistController {
            model.addAttribute("result", a - b);
        }
        else if(action.equals("division")) {
-           model.addAttribute("result", a / b);
+           model.addAttribute("result", (double)a / b);
        }
 
         return ("first/calculator");

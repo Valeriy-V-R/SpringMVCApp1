@@ -12,29 +12,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/first")
 public class FistController {
 
-    @GetMapping("/hello")
-
-    // Получение параметров запроса с помощью HttpServletRequest
-//    public String helloPage(HttpServletRequest request) {
-//        String name = request.getParameter("name");
-//        String surname = request.getParameter("surname");
-//
-//        System.out.println("Hello, " + name + " " + surname);
-//
-//        return ("first/hello");
-//    }
-
+    @GetMapping("/calculator")
 
     // Получение параметров запроса с помощью @RequestParam
-    //
-      public String helloPage(@RequestParam(value = "name", required = false) String name,
-                              @RequestParam (value = "surname", required = false) String surname,
+
+      public String helloPage(@RequestParam(value = "a", required = false) Integer a,
+                              @RequestParam (value = "b", required = false) Integer b,
+                              @RequestParam (value = "action", required = false) Float action,
                               Model model) {
 
         //System.out.println("Hello, " + name + " " + surname);
-        model.addAttribute("message", "Hello, " + name + " " + surname);
+        model.addAttribute("result",   a + " " + b);
 
-        return ("first/hello");
+        return ("first/calculator");
     }
 
     @GetMapping("/goodbye")

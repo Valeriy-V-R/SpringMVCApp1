@@ -1,4 +1,4 @@
-package controllers;
+package by.valery.springcourse.controllers;
 
 
 import by.valery.springcourse.dao.PersonDAO;
@@ -22,6 +22,7 @@ public class PeopleController {
         this.personDAO = personDAO;
     }
 
+
     // Метод возвращает список из людей
     @GetMapping()
     public String index(Model model){
@@ -38,3 +39,4 @@ public class PeopleController {
         return "people/show";
     }
 }
+

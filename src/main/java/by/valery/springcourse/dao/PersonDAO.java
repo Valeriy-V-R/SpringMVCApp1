@@ -2,7 +2,8 @@ package by.valery.springcourse.dao;
 
 // Класс для работы со списком людей (поик, добавление, удаление)
 
-import models.Person;
+
+import by.valery.springcourse.models.Person;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 @Component
 public class PersonDAO {
     private static int PEOPLE_COUNT;
-    public List<Person> people;
+    private List<Person> people;
 
     {
         people = new ArrayList<>();
@@ -23,11 +24,11 @@ public class PersonDAO {
         people.add(new Person(++PEOPLE_COUNT, "Katy"));
     }
 
-    public  List<Person> index(){
+    public  List<Person> index(){ // Отображает всех людей из списка
         return people;
     }
 
-    public Person show(int id) {
+    public Person show(int id) {  // Отображает человека по ID
         return people.stream().filter(person -> person.getId() == id).findAny().orElse((null));
     }
 }

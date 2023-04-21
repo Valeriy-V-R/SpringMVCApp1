@@ -11,20 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/people")
+@RequestMapping("/people") //Связывает метод контроллера с URL адресом
 public class PeopleController {
 
     // Внедряем DAO в контроллер
-    @Autowired
-    private final PersonDAO personDAO;
+    private PersonDAO personDAO;
 
+    @Autowired //Сканирует на наличие @bean и @Component и внедряет их.
     public PeopleController(PersonDAO personDAO) {
         this.personDAO = personDAO;
     }
-
-
     // Метод возвращает список из людей
-    @GetMapping()
+
+    @GetMapping() //Связывает метод контроллера с URL адресом
     public String index(Model model){
         //Получим всех людей из DAO и передадим на отображение и представление
         model.addAttribute("people", personDAO.index());

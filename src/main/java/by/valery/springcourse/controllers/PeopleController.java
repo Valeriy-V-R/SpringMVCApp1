@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PeopleController {
 
     // Внедряем DAO в контроллер
-    private PersonDAO personDAO;
+    final private PersonDAO PERSON_DAO;
 
     @Autowired //Сканирует на наличие @bean и @Component и внедряет их.
-    public PeopleController(PersonDAO personDAO) {
-        this.personDAO = personDAO;
+    public PeopleController(PersonDAO PERSON_DAO) {
+        this.PERSON_DAO = PERSON_DAO;
     }
     // Метод возвращает список из людей
 
     @GetMapping() //Связывает метод контроллера с URL адресом
     public String index(Model model){
         //Получим всех людей из DAO и передадим на отображение и представление
-        model.addAttribute("people", personDAO.index());
+        model.addAttribute("people", PERSON_DAO.index());
         return "people/index";
     }
 
@@ -34,7 +34,7 @@ public class PeopleController {
     @GetMapping("/{id}")
     public  String show (@PathVariable("id") int id, Model model) {
         //Получим одного человека по id из DAO и передадим на отображение в представления
-        model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("person", PERSON_DAO.show(id));
         return "people/show";
     }
 }

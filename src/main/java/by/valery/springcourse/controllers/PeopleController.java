@@ -32,7 +32,8 @@ public class PeopleController {
 
     // Метод возвращает одного человека по его ID
     @GetMapping("/{id}")
-    public  String show (@PathVariable("id") int id, Model model) {
+    public  String show (@PathVariable("id") int id, Model model) { // Аннотация @PathVariable используется для присвоения
+                                                                   // вводимого в строке URL
         //Получим одного человека по id из DAO и передадим на отображение в представления
         model.addAttribute("person", PERSON_DAO.show(id));
         return "people/show";

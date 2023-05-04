@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Component
+@Component // Это @bean с отличиями. Обычно @Component - аннотация уровня класса
 public class PersonDAO {
     private static int PEOPLE_COUNT;
     private List<Person> people;

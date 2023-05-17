@@ -50,13 +50,24 @@ public class PeopleController {
 //    public String newPerson(@ModelAttribute("person") Person person) {
 //        return "people/new";
 
-
     // Метод добавляет нового человека в базу данных из формы с помощью @ModelAttribute("person")
     @PostMapping()
     public String create(@ModelAttribute("person") Person person){
         PERSON_DAO.save(person);
         return "redirect:/people"; //redirect осуществляет переход на страницу
                                    //указанную после двоеточия
+    }
+    // Создание страницы для редактирования человека
+    @GetMapping("/{id}/edit")
+    public  String edit(Model model, @PathVariable("id") int id){
+        model.addAttribute("person", PERSON_DAO.show(id));
+        return "people/edit";
+    }
+    //
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id){
+        PERSON_DAO.update(id, person);
+        return "redirect:/people";
     }
 }
 

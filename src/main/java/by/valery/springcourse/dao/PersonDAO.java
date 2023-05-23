@@ -41,6 +41,11 @@ public class PersonDAO {
         Person personToBEUpdated = show(id);
         personToBEUpdated.setName(updatedPerson.getName());
     }
+
+    public void delete(int id){
+        //use method removeIf() - удаление по предикату
+        people.removeIf(p -> p.getId() == id);
+    }
 }
 
 

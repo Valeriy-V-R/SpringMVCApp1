@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-
+//
 @Controller
 @RequestMapping("/people") //Связывает метод контроллера с URL адресом
 public class PeopleController {

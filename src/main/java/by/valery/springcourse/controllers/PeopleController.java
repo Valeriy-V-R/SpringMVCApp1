@@ -3,9 +3,11 @@ package by.valery.springcourse.controllers;
 
 import by.valery.springcourse.dao.PersonDAO;
 import by.valery.springcourse.models.Person;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -52,7 +54,12 @@ public class PeopleController {
 
     // Метод добавляет нового человека в базу данных из формы с помощью @ModelAttribute("person")
     @PostMapping()
-    public String create(@ModelAttribute("person") Person person){
+    public String create(@ModelAttribute("person") @Valid Person person,
+                         BindingResult bindingResult){
+        // BindingResult класс для храннения ошибок валидации. Стоит всегда после @Valid
+        if (bindingResult.hasErrors())
+            return "people/new";
+
         PERSON_DAO.save(person);
         return "redirect:/people"; //redirect осуществляет переход на страницу
                                    //указанную после двоеточия
@@ -65,7 +72,11 @@ public class PeopleController {
     }
     //
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id){
+    public String update(@ModelAttribute("person") @Valid Person person,
+                         BindingResult bindingResult, @PathVariable("id") int id){
+        if (bindingResult.hasErrors())
+            return "people/edit";
+
         PERSON_DAO.update(id, person);
         return "redirect:/people";
     }
